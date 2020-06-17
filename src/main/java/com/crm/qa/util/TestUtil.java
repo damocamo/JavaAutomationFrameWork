@@ -22,6 +22,7 @@ public class TestUtil extends TestBase {
 		driver.switchTo().frame("mainpanel");
 	}
 
+	//Can be added if failed etc... basic example
 	public static void takeScreenshotAtEndOfTest() throws IOException {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String currentDir = System.getProperty("user.dir");
@@ -40,5 +41,4 @@ public class TestUtil extends TestBase {
         wait.until(pageLoadCondition);
 	}
 	
-
 }

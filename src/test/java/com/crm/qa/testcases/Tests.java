@@ -1,5 +1,7 @@
 package com.crm.qa.testcases;
 
+import java.io.IOException;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +18,7 @@ public class Tests extends TestBase {
 	HomePage homePage;
 	TestUtil testUtil;
 	CartPage cartPage;
-	
+
 	public Tests() {
 		super();
 	}
@@ -25,55 +27,62 @@ public class Tests extends TestBase {
 	public void setUp() {
 		initialization();
 		testUtil = new TestUtil();
-		homePage = new HomePage();			
-		itemPage = new ItemPage();	
+		homePage = new HomePage();
+		itemPage = new ItemPage();
 		cartPage = new CartPage();
 	}
-			
-	@Test(priority=1)
+
+	@Test(priority = 1)
 	public void clickItemandValidate() {
-		//Click on first item and validate 
+		// Click on first item and validate
 		homePage.clickOnFirstItem();
-		String productName = homePage.pageTitle(); 
-		Assert.assertEquals(productName, "Faded Short Sleeve T-shirts - My Store","Invalid item match");				
-		
+		String productName = homePage.pageTitle();
+		Assert.assertEquals(productName, "Faded Short Sleeve T-shirts - My Store", "Invalid item match");
+
 		// Add to cart and validate
 		itemPage.addToChart();
 		String itemAdded = itemPage.validateItemTitle();
-		Assert.assertEquals(itemAdded, "Product successfully added to your shopping cart","Product Not Added");	
-		
-		//Close popup and validate dropdown cart has added item and go to cart page
+		Assert.assertEquals(itemAdded, "Product successfully added to your shopping cart", "Product Not Added");
+
+		// Close popup and validate dropdown cart has added item and go to cart page
 		itemPage.clickCross();
 		String addedItem = itemPage.CheckCart();
-		Assert.assertEquals(addedItem, "Faded Short Sleeve T-shirts","Invalid item added");				
-		
-		//Validate chart page has the item ordered 
-		String cart = cartPage.pageTitle(); 
-		Assert.assertEquals(cart, "Order - My Store","CardPage");	
+		Assert.assertEquals(addedItem, "Faded Short Sleeve T-shirts", "Invalid item added");
+
+		// Validate chart page has the item ordered
+		String cart = cartPage.pageTitle();
+		Assert.assertEquals(cart, "Order - My Store", "CardPage");
 		String check = cartPage.checkItem();
-		Assert.assertEquals(check, "Faded Short Sleeve T-shirts","Order Choice Invalid");
-		
-		//Can add more tests to validate checkout processes 
-		//Can update to make more generic and add exactly which item you want to add instead of first item 
-		//Can use search bar and find item wanted and add 
-		
-		//Improve code: 
-		//Better reporting and screenshots on errors
-		//Ability to run in parallel (command line) 
-		
+		Assert.assertEquals(check, "Faded Short Sleeve T-shirts", "Order Choice Invalid");
+
+		// Can add more tests to validate checkout processes
+		// Can update to make more generic and add exactly which item you want to add
+		// instead of first item
+		// Can use search bar and find item wanted and add
+
+		// Improve code:
+		// Better reporting and screenshots on errors
+		// Ability to run in parallel (command line)
+
 	}
-	
-	@Test(priority=1)
+
+	@Test(priority = 1)
 	public void negclickItemandValidate() {
-		//Click on first item and validate 
+		// Click on first item and validate
 		homePage.clickOnFirstItem();
-		String productName = homePage.pageTitle(); 
-		Assert.assertEquals(productName, "Other","Invalid item match");			
+		String productName = homePage.pageTitle();
+		Assert.assertEquals(productName, "Other", "Invalid item match");
 	}
-	
+
 	@AfterMethod
-	public void tearDown(){
+	public void tearDown() {
+		try {
+			TestUtil.takeScreenshotAtEndOfTest();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.quit();
 	}
-	
+
 }
