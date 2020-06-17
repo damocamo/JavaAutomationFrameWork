@@ -13,9 +13,6 @@ import com.simple.qa.base.TestBase;
 
 public class ItemPage extends TestBase{
 	
-	@FindBy(css = "[itemprop='name']")
-	WebElement ItemName;
-	
 	@FindBy(xpath = "//*[text()='Add to cart']")
 	WebElement AddToCart;
 
@@ -34,10 +31,6 @@ public class ItemPage extends TestBase{
 	@FindBy(css = "[class='cart_block_product_name']")
 	WebElement CartBlock;
 	
-	@FindBy(css = "[id='button_order_cart']")
-	WebElement CheckOutBox;
-
-	//Initializing the Page Objects:
 	public ItemPage(){
 		PageFactory.initElements(driver, this);
 	}
@@ -47,11 +40,15 @@ public class ItemPage extends TestBase{
 	}
 	
 	public void addToChart () {
+		//Wait to be clickable
 		new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(AddToCart));
+		
+		// Demo of using javascript executor 
 		JavascriptExecutor js = (JavascriptExecutor)driver;
     	js.executeScript("arguments[0].click();", AddToCart);
 		TestUtil.waitForLoad(driver);
-		//have to wait for popup so 
+		
+		//have to wait for popup so include this 
 		new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(Tick));
 		
 	}
@@ -63,10 +60,8 @@ public class ItemPage extends TestBase{
 	
 	
 	public String CheckCart() {
-		
 		String addedITem = CartBlock.getAttribute("title");
 		ShoppingCart.click();
-		
 		return addedITem;
 	}
 

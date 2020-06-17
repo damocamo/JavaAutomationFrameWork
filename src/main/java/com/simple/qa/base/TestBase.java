@@ -33,7 +33,6 @@ public class TestBase {
 		}
 	}
 	
-	
 	public static void initialization(){
 		String browserName = prop.getProperty("browser");
 		
@@ -49,23 +48,11 @@ public class TestBase {
 			System.setProperty("webdriver.edge.driver", "/Users/iClassStudent/Downloads/edgedriver/msedgedriver.exe");	
 			driver = new EdgeDriver(); 
 		}
-				
 		
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
-		
 		driver.get(prop.getProperty("url"));
-		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

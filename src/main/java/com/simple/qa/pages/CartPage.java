@@ -15,9 +15,6 @@ public class CartPage extends TestBase {
 	@FindBy(css = "[class='cart_item last_item first_item address_0 odd']>[class='cart_description']>p>a")
 	WebElement LastIn;
 	
-	
-	WebDriverWait wait; 
-
 	// Initializing the Page Object:
 	public CartPage() {
 		PageFactory.initElements(driver, this);

@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.crm.qa.util.TestUtil;
@@ -38,33 +37,22 @@ public class HomePage extends TestBase {
 	}
 	
 	public boolean clickOnFirstItem(){
-		Actions actions = new Actions(driver);
-		
+
 		//Used as FF didnt work without this scroll 
 		JavascriptExecutor js = (JavascriptExecutor)driver;
     	js.executeScript("arguments[0].scrollIntoView(true);", Pictures);
-		
-    	actions.moveToElement(Pictures);
-     	actions.click().build().perform();
-     	//added as firefox setup doesnt 
-//     	try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-     	TestUtil.waitForLoad(driver);
-		
-	
 
+    	//Actions steps, had to include pause for FF
+    	Actions actions = new Actions(driver);
+    	actions.moveToElement(Pictures).pause(1000);
+    	actions.click().pause(1000).build().perform();
+     	TestUtil.waitForLoad(driver);
 		return true;
 	}
 	
-		public String validateCartAdded() {
+	public String validateCartAdded() {
 		String myTest = PopUp.getText();
 		return myTest;
 	}
-	
-
 	
 }
