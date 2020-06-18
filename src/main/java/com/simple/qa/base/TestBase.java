@@ -12,7 +12,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import com.crm.qa.util.TestUtil;
+import com.simple.qa.util.TestUtil;
 
 public class TestBase {
 	
@@ -33,6 +33,7 @@ public class TestBase {
 		}
 	}
 	
+	// Depending on which property is setup will run necessary browser 
 	public static void initialization(){
 		String browserName = prop.getProperty("browser");
 		

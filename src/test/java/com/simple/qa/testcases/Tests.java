@@ -1,4 +1,4 @@
-package com.crm.qa.testcases;
+package com.simple.qa.testcases;
 
 import java.io.IOException;
 
@@ -7,11 +7,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.crm.qa.util.TestUtil;
 import com.simple.qa.base.TestBase;
 import com.simple.qa.pages.CartPage;
 import com.simple.qa.pages.HomePage;
 import com.simple.qa.pages.ItemPage;
+import com.simple.qa.util.TestUtil;
 
 public class Tests extends TestBase {
 	ItemPage itemPage;
@@ -63,7 +63,10 @@ public class Tests extends TestBase {
 		// Improve code:
 		// Better reporting and screenshots on errors
 		// Ability to run in parallel (command line)
-
+		// Setup Docker Container that can be run independently and push to a CI/CD platform - dw about environments  
+		// Use other framework such as codecptJS, RobotFramwork, cypress, nightwatch, protractor (depending if node, angular etc..)
+		// Using BBD style tests (just adds another layer IMO) - jbehave / serenity / 
+		// Java frameworks selenide,
 	}
 
 	@Test(priority = 1)

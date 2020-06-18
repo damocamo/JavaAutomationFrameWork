@@ -8,8 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.crm.qa.util.TestUtil;
 import com.simple.qa.base.TestBase;
+import com.simple.qa.util.TestUtil;
 
 public class ItemPage extends TestBase{
 	
